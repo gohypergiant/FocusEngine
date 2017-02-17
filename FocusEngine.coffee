@@ -35,7 +35,7 @@
 	fe.previousFocus()
 	
 	# Layers can trigger behavior upon receiving or losing focus, or being selected
-	layerA.on "receivedFocus", ->
+	layerA.on "focus", ->
 	layerA.on "lostFocus", ->
 	layerA.on "selected", ->
 	
@@ -124,7 +124,7 @@ exports.placeFocus = (layer = null) ->
 	if checkVisible(layer) == true and layer != null
 		exports.focus = layer
 		exports.unfocusAll()
-		layer.emit "receivedFocus"
+		layer.emit "focus"
 		if layer != null and layer in exports.focusable
 			layer?.animate("focus")
 	
