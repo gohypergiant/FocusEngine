@@ -36,7 +36,7 @@
 	
 	# Layers can trigger behavior upon receiving or losing focus, or being selected
 	layerA.on "focus", ->
-	layerA.on "lostFocus", ->
+	layerA.on "unfocus", ->
 	layerA.on "selected", ->
 	
 	# Integration with RemoteLayer (https://github.com/bpxl-labs/RemoteLayer)
@@ -130,7 +130,7 @@ exports.placeFocus = (layer = null) ->
 	
 exports.unfocusAll = () ->
 	for layer in exports.focusable
-		layer.emit "lostFocus"
+		layer.emit "unfocus"
 		if layer.states.current.name == "focus"
 			layer.animate("unfocus")
 		
