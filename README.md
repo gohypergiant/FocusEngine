@@ -34,7 +34,7 @@ myFocusableLayers = [layerA, layerB, layerC]
 
 #### Initialize the engine with your array
 ```coffeescript
-fe.initializeFocus(myFocusableLayers)
+fe.initialize(myFocusableLayers)
 ```
 
 #### Optionally attach changeFocus() to keyboard events
@@ -52,10 +52,10 @@ document.addEventListener "keydown", (event) ->
 
 #### Customize focus state
 ```coffeescript
-fe.focusStyle.shadowColor = <string> (hex or rgba)
 fe.focusStyle.scale = <number>
 fe.focusStyle.shadowX = <number>
 fe.focusStyle.shadowY = <number>
+fe.focusStyle.shadowColor = <string> (hex or rgba)
 fe.focusStyle.shadowBlur = <number>
 ```
 

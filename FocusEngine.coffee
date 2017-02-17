@@ -8,7 +8,7 @@
 	myFocusableLayers = [layerA, layerB, layerC]
 	
 	# Initialize the engine with your array
-	fe.initializeFocus(myFocusableLayers)
+	fe.initialize(myFocusableLayers)
 	
 	# Optionally attach changeFocus() to keyboard events
 	document.addEventListener "keydown", (event) ->
@@ -69,7 +69,7 @@ exports.focusStyle =
 	shadowY: 0
 
 # prep focus states
-exports.initializeFocus = (focusableArray) ->
+exports.initialize = (focusableArray) ->
 	clearColor = new Color(exports.focusStyle.shadowColor).alpha(0)
 	exports.focusable = focusableArray
 	for layer in exports.focusable 
