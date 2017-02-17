@@ -50,14 +50,23 @@ document.addEventListener "keydown", (event) ->
 		else null
 ```
 
-#### Customize focus state
+#### Customize focus and unfocused states
 ```coffeescript
 fe.focusStyle.scale = <number>
 fe.focusStyle.shadowX = <number>
 fe.focusStyle.shadowY = <number>
 fe.focusStyle.shadowColor = <string> (hex or rgba)
 fe.focusStyle.shadowBlur = <number>
+fe.focusStyle.shadowSpread = <number>
+
+fe.unfocusStyle.shadowX = <number>
+fe.unfocusStyle.shadowY = <number>
+fe.unfocusStyle.shadowColor = <string> (hex or rgba)
+fe.unfocusStyle.shadowBlur = <number>
+fe.unfocusStyle.shadowSpread = <number>
 ```
+
+(Unfocused scale is always assumed to be the layer’s original scale.)
 
 #### Place initial focus
 ```coffeescript

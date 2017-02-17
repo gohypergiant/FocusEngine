@@ -67,24 +67,35 @@ exports.focusStyle =
 	shadowColor: "rgba(0,0,0,0.3)"
 	shadowX: 0
 	shadowY: 0
+	shadowSpread: 0
+
+exports.unfocusStyle =
+	shadowBlur: 20
+	shadowColor: "rgba(0,0,0,0)"
+	shadowX: 0
+	shadowY: 0
+	shadowSpread: 0
 
 # prep focus states
 exports.initialize = (focusableArray) ->
-	clearColor = new Color(exports.focusStyle.shadowColor).alpha(0)
 	exports.focusable = focusableArray
 	for layer in exports.focusable 
 		layer.states.focus =
 			scale: layer.scale * exports.focusStyle.scale
 			shadowBlur: exports.focusStyle.shadowBlur
+			shadowSpread: exports.focusStyle.shadowSpread
 			shadowColor: exports.focusStyle.shadowColor
 			shadowX: exports.focusStyle.shadowX
 			shadowY: exports.focusStyle.shadowY
 		layer.states.unfocus =
 			scale: layer.scale
-			shadowBlur: 20
-			shadowColor: clearColor
-			shadowX: 0
-			shadowY: 0
+			shadowBlur: exports.unfocusStyle.shadowBlur
+			shadowSpread: exports.unfocusStyle.shadowSpread
+			shadowColor: exports.unfocusStyle.shadowColor
+			shadowX: exports.unfocusStyle.shadowX
+			shadowY: exports.unfocusStyle.shadowY
+		layer.animate("unfocus", instant: true)
+		
 
 # layer visibility
 checkVisible = (layer) ->
