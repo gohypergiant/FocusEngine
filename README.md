@@ -80,8 +80,8 @@ fe.previousFocus()
 
 #### Layers can trigger behavior upon receiving or losing focus, or being selected
 ```coffeescript
-layerA.on "focus", ->
-layerA.on "unfocus", ->
+layerA.on "receivedFocus", ->
+layerA.on "lostFocus", ->
 layerA.on "selected", ->
 ```
 

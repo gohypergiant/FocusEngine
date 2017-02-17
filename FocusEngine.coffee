@@ -35,8 +35,8 @@
 	fe.previousFocus()
 	
 	# Layers can trigger behavior upon receiving or losing focus, or being selected
-	layerA.on "focus", ->
-	layerA.on "unfocus", ->
+	layerA.on "receivedFocus", ->
+	layerA.on "lostFocus", ->
 	layerA.on "selected", ->
 	
 	# Integration with RemoteLayer (https://github.com/bpxl-labs/RemoteLayer)
