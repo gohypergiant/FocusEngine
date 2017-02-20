@@ -73,12 +73,12 @@ fe.unfocusStyle.shadowSpread = <number>
 fe.placeFocus(layerA)
 ```
 
-#### previousFocus() is available to use in conjunction with FlowComponent's showPrevious()
+#### focusPrevious() is available to use in conjunction with FlowComponent's showPrevious()
 ```coffeescript
-fe.previousFocus()
+fe.focusPrevious()
 ```
 
-(Note that focus cannot be placed on a layer whose visibility, or whose ancestor’s visibility, is false. You may need to delay calling `previousFocus()` until the FlowComponent’s transition is ended, perhaps by using `.onTransitionEnd`.)
+(Note that focus cannot be placed on a layer whose visibility, or whose ancestor’s visibility, is false. You may need to delay calling `focusPrevious()` until the FlowComponent’s transition is ended, perhaps by using `.onTransitionEnd`.)
 
 #### Layers can trigger behavior upon receiving or losing focus, or being selected
 ```coffeescript

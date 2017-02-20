@@ -31,8 +31,8 @@
 	# Place initial focus
 	fe.placeFocus(layerA)
 	
-	# previousFocus() is available to use in conjunction with FlowComponent's showPrevious()
-	fe.previousFocus()
+	# focusPrevious() is available to use in conjunction with FlowComponent's showPrevious()
+	fe.focusPrevious()
 	
 	# Layers can trigger behavior upon receiving or losing focus, or being selected
 	layerA.on "focus", ->
