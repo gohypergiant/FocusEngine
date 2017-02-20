@@ -8,7 +8,7 @@ The FocusEngine module allows you to simulate the grid focus behavior seen on st
 
 Once initialized, any _visible_ layer can be brought into focus, even if it’s off screen. This permits the activation of offscreen menus. Visual appearance of focused elements can be customized.
 
-<img src="https://cloud.githubusercontent.com/assets/935/23083685/9171096a-f524-11e6-80c9-e15807df9cc2.gif" width="497" style="display: block; margin: auto" alt="FocusEngine preview" />
+<img src="https://cloud.githubusercontent.com/assets/935/23135402/18b99578-f75e-11e6-9795-b619b40ddd4a.gif" width="497" style="display: block; margin: auto" alt="FocusEngine preview" />
 
 ### Installation
 
