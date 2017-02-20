@@ -78,6 +78,8 @@ fe.placeFocus(layerA)
 fe.previousFocus()
 ```
 
+(Note that focus cannot be place on a layer whose visibility, or whose ancestor’s visibility, is false. You may need to delay calling `previousFocus()` until the FlowComponent’s transition is ended, perhaps using `.onTransitionEnd`.)
+
 #### Layers can trigger behavior upon receiving or losing focus, or being selected
 ```coffeescript
 layerA.on "focus", ->
