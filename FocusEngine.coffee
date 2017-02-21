@@ -167,22 +167,22 @@ exports.changeFocus = Utils.throttle 0.1, (direction) ->
 	if direction == "up"
 		for layer in exports.focusable
 			layerMidY = layer.screenFrame.y + layer.screenFrame.height/2
-			if layerMidY < focusMidY
+			if layerMidY < focusMidY and checkVisible(layer) == true
 				tempArray.push(layer)
 	else if direction == "down"
 		for layer in exports.focusable
 			layerMidY = layer.screenFrame.y + layer.screenFrame.height/2
-			if layerMidY > focusMidY
+			if layerMidY > focusMidY and checkVisible(layer) == true
 				tempArray.push(layer)
 	else if direction == "left"
 		for layer in exports.focusable
 			layerMidX = layer.screenFrame.x + layer.screenFrame.width/2
-			if layerMidX < focusMidX
+			if layerMidX < focusMidX and checkVisible(layer) == true
 				tempArray.push(layer)
 	else if direction == "right"
 		for layer in exports.focusable
 			layerMidX = layer.screenFrame.x + layer.screenFrame.width/2
-			if layerMidX > focusMidX
+			if layerMidX > focusMidX and checkVisible(layer) == true
 				tempArray.push(layer)
 	else if direction == "select"
 		exports.focus.emit "selected"
