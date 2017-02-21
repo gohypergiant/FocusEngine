@@ -26,6 +26,24 @@ fe = require "FocusEngine"
 
 ### API
 
+#### Customize focus and unfocused states
+```coffeescript
+fe.focusStyle.scale = <number>
+fe.focusStyle.shadowX = <number>
+fe.focusStyle.shadowY = <number>
+fe.focusStyle.shadowColor = <string> (hex or rgba)
+fe.focusStyle.shadowBlur = <number>
+fe.focusStyle.shadowSpread = <number>
+
+fe.unfocusStyle.shadowX = <number>
+fe.unfocusStyle.shadowY = <number>
+fe.unfocusStyle.shadowColor = <string> (hex or rgba)
+fe.unfocusStyle.shadowBlur = <number>
+fe.unfocusStyle.shadowSpread = <number>
+```
+
+(Unfocused scale is always assumed to be the layer’s original scale. This need not be 1. You may get better visual results by drawing your layer slightly larger than needed and setting its initial scale to something less than 1.)
+
 #### Collect layers which will participate into an array
 	
 ```coffeescript
@@ -54,24 +72,6 @@ document.addEventListener "keydown", (event) ->
 		when 40 then fe.changeFocus("down")
 		else null
 ```
-
-#### Customize focus and unfocused states
-```coffeescript
-fe.focusStyle.scale = <number>
-fe.focusStyle.shadowX = <number>
-fe.focusStyle.shadowY = <number>
-fe.focusStyle.shadowColor = <string> (hex or rgba)
-fe.focusStyle.shadowBlur = <number>
-fe.focusStyle.shadowSpread = <number>
-
-fe.unfocusStyle.shadowX = <number>
-fe.unfocusStyle.shadowY = <number>
-fe.unfocusStyle.shadowColor = <string> (hex or rgba)
-fe.unfocusStyle.shadowBlur = <number>
-fe.unfocusStyle.shadowSpread = <number>
-```
-
-(Unfocused scale is always assumed to be the layer’s original scale. This need not be 1. You may get better visual results by drawing your layer slightly larger than needed and setting its initial scale to something less than 1.)
 
 #### Place initial focus
 ```coffeescript

@@ -4,6 +4,20 @@
 	# Require the module
 	fe = require "FocusEngine"
 	
+	# Customize focus and unfocused states
+	fe.focusStyle.scale = <number>
+	fe.focusStyle.shadowX = <number>
+	fe.focusStyle.shadowY = <number>
+	fe.focusStyle.shadowColor = <string> (hex or rgba)
+	fe.focusStyle.shadowBlur = <number>
+	fe.focusStyle.shadowSpread = <number>
+
+	fe.unfocusStyle.shadowX = <number>
+	fe.unfocusStyle.shadowY = <number>
+	fe.unfocusStyle.shadowColor = <string> (hex or rgba)
+	fe.unfocusStyle.shadowBlur = <number>
+	fe.unfocusStyle.shadowSpread = <number>
+	
 	# Collect layers which will participate into an array
 	myFocusableLayers = [layerA, layerB, layerC]
 	
@@ -23,13 +37,6 @@
 			when 39 then fe.changeFocus("right")
 			when 40 then fe.changeFocus("down")
 			else null
-	
-	# Customize focus state
-	fe.focusStyle.shadowColor = <string> (hex or rgba)
-	fe.focusStyle.scale = <number>
-	fe.focusStyle.shadowX = <number>
-	fe.focusStyle.shadowY = <number>
-	fe.focusStyle.shadowBlur = <number>
 	
 	# Place initial focus
 	fe.placeFocus(layerA)
