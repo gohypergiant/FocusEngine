@@ -10,6 +10,9 @@
 	# Initialize the engine with your array
 	fe.initialize(myFocusableLayers)
 	
+	# Add a layer created post-initialization
+	fe.addLayer(layerA)
+	
 	# Optionally attach changeFocus() to keyboard events
 	document.addEventListener "keydown", (event) ->
 		keyCode = event.which
@@ -80,21 +83,7 @@ exports.unfocusStyle =
 exports.initialize = (focusableArray) ->
 	exports.focusable = focusableArray
 	for layer in exports.focusable 
-		layer.states.focus =
-			scale: layer.scale * exports.focusStyle.scale
-			shadowBlur: exports.focusStyle.shadowBlur
-			shadowSpread: exports.focusStyle.shadowSpread
-			shadowColor: exports.focusStyle.shadowColor
-			shadowX: exports.focusStyle.shadowX
-			shadowY: exports.focusStyle.shadowY
-		layer.states.unfocus =
-			scale: layer.scale
-			shadowBlur: exports.unfocusStyle.shadowBlur
-			shadowSpread: exports.unfocusStyle.shadowSpread
-			shadowColor: exports.unfocusStyle.shadowColor
-			shadowX: exports.unfocusStyle.shadowX
-			shadowY: exports.unfocusStyle.shadowY
-		layer.animate("unfocus", instant: true)
+		styleLayer(layer)
 		
 
 # layer visibility
@@ -123,12 +112,12 @@ exports.placeFocus = (layer = null) ->
 		exports.previousFocus = exports.focus
 	if checkVisible(layer) == true and layer != null
 		exports.focus = layer
-		exports.unfocusAll()
+		unfocusAll()
 		layer.emit "focus"
 		if layer != null and layer in exports.focusable
 			layer?.animate("focus")
 	
-exports.unfocusAll = () ->
+unfocusAll = () ->
 	for layer in exports.focusable
 		layer.emit "unfocus"
 		if layer.states.current.name == "focus"
@@ -137,6 +126,27 @@ exports.unfocusAll = () ->
 exports.focusPrevious = () ->
 	if exports.previousFocus != null
 		exports.placeFocus(exports.previousFocus)
+		
+exports.addLayer = (layer) ->
+	exports.focusable.push(layer)
+	styleLayer(layer)
+
+styleLayer = (layer) ->
+	layer.states.focus =
+		scale: layer.scale * exports.focusStyle.scale
+		shadowBlur: exports.focusStyle.shadowBlur
+		shadowSpread: exports.focusStyle.shadowSpread
+		shadowColor: exports.focusStyle.shadowColor
+		shadowX: exports.focusStyle.shadowX
+		shadowY: exports.focusStyle.shadowY
+	layer.states.unfocus =
+		scale: layer.scale
+		shadowBlur: exports.unfocusStyle.shadowBlur
+		shadowSpread: exports.unfocusStyle.shadowSpread
+		shadowColor: exports.unfocusStyle.shadowColor
+		shadowX: exports.unfocusStyle.shadowX
+		shadowY: exports.unfocusStyle.shadowY
+	layer.animate("unfocus", instant: true)
 
 exports.changeFocus = Utils.throttle 0.1, (direction) ->
 	if exports.debug == true

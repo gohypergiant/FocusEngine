@@ -37,6 +37,11 @@ myFocusableLayers = [layerA, layerB, layerC]
 fe.initialize(myFocusableLayers)
 ```
 
+#### Add a layer created post-initialization
+```coffeescript
+fe.addLayer(layerD)
+```
+
 #### Optionally attach changeFocus() to keyboard events
 ```coffeescript
 document.addEventListener "keydown", (event) ->
