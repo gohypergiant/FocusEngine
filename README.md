@@ -4,7 +4,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](.github/CONTRIBUTING.md)
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()
 
-The FocusEngine module allows you to simulate the grid focus behavior seen on streaming media players like Apple TV and Roku. Use the keyboard, [RemoteLayer](https://github.com/bpxl-labs/RemoteLayer) or another mechanism to direct focus around the screen.
+The FocusEngine module allows you to simulate the grid focus behavior seen on streaming media players like Apple TV and Roku. Use the keyboard, [RemoteLayer](https://github.com/bpxl-labs/RemoteLayer) or another mechanism to direct focus around your prototype’s canvas.
 
 Once initialized, any _visible_ layer can be brought into focus, even if it’s off screen. This permits the activation of offscreen menus. Visual appearance of focused elements can be customized.
 
@@ -14,9 +14,9 @@ Once initialized, any _visible_ layer can be brought into focus, even if it’s 
 
 #### Manual Installation
 
-Copy / save the `FocusEngine.coffee` file into your project's `modules` folder.
+Copy or save the `FocusEngine.coffee` file into your project's `modules` folder.
 
-### Adding It To Your Project
+### Adding It to Your Project
 
 In your Framer project add the following:
 
@@ -26,7 +26,7 @@ fe = require "FocusEngine"
 
 ### API
 
-#### Customize focus and unfocused states
+#### Customize focused and unfocused states
 ```coffeescript
 fe.focusStyle.scale = <number>
 fe.focusStyle.shadowX = <number>
@@ -44,7 +44,7 @@ fe.unfocusStyle.shadowSpread = <number>
 
 (Unfocused scale is always assumed to be the layer’s original scale. This need not be 1. You may get better visual results by drawing your layer slightly larger than needed and setting its initial scale to something less than 1.)
 
-#### Collect layers which will participate into an array
+#### Collect layers that will participate into an array
 	
 ```coffeescript
 myFocusableLayers = [layerA, layerB, layerC]
