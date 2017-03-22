@@ -4,15 +4,15 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](.github/CONTRIBUTING.md)
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()
 
-The FocusEngine module allows you to simulate the grid focus behavior seen on streaming media players like Apple TV and Roku. Use the keyboard, [RemoteLayer](https://github.com/bpxl-labs/RemoteLayer) or another mechanism to direct focus around your prototype’s canvas.
+The FocusEngine module allows you to simulate the grid focus behavior seen on streaming media players like Apple TV and Roku. Use the keyboard, [RemoteLayer](https://github.com/bpxl-labs/RemoteLayer), or another mechanism to direct focus around your prototype’s canvas.
 
-Once initialized, any _visible_ layer can be brought into focus, even if it’s off screen. This permits the activation of offscreen menus. Visual appearance of focused elements can be customized.
+Once initialized, any _visible_ layer can be brought into focus, even if it’s off screen. This permits the activation of off-screen menus. Visual appearance of focused elements can be customized.
 
 <img src="https://cloud.githubusercontent.com/assets/935/24167436/bfaae7e0-0e44-11e7-846f-a47702716a28.gif" width="497" style="display: block; margin: auto" alt="FocusEngine preview" />
 
 ### Installation
 
-#### Manual Installation
+#### Manual installation
 
 Copy or save the `FocusEngine.coffee` file into your project's `modules` folder.
 
