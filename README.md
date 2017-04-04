@@ -12,6 +12,13 @@ Once initialized, any _visible_ layer can be brought into focus, even if it’s 
 
 ### Installation
 
+#### NPM Installation
+
+```
+$ cd /your/framer/project
+$ npm i @blackpixel/framer-focusengine --save
+```
+
 #### Manual installation
 
 Copy or save the `FocusEngine.coffee` file into your project's `modules` folder.
