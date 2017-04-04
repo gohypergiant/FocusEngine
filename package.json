@@ -1,0 +1,26 @@
+{
+  "name": "@blackpixel/framer-focusengine",
+  "version": "1.0.0",
+  "description": "Simulate the grid focus behavior seen on streaming media players like Apple TV and Roku.",
+  "homepage": "https://github.com/bpxl-labs/FocusEngine",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bpxl-labs/FocusEngine.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bpxl-labs/FocusEngine/issues"
+  },
+  "main": "FocusEngine.coffee",
+  "author": "Black Pixel",
+  "license": "MIT",
+  "keywords": [
+    "framerjs",
+    "framer",
+    "coffeescript",
+    "focus",
+    "tv"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
