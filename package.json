@@ -22,7 +22,7 @@
   ],
   "publishConfig": {
     "access": "public"
-  }
+  },
   "dependencies": {
     "coffeeify": "^2.1.0"
   },
