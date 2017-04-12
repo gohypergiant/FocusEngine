@@ -16,7 +16,7 @@ Once initialized, any _visible_ layer can be brought into focus, even if it’s 
 
 ```
 $ cd /your/framer/project
-$ npm i @blackpixel/framer-focusengine --save
+$ npm i @blackpixel/framer-focusengine
 ```
 
 #### Manual installation
