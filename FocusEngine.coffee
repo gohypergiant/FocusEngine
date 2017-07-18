@@ -1,9 +1,9 @@
 ###
 	# USING THE FOCUSENGINE
-	
+
 	# Require the module
 	fe = require "FocusEngine"
-	
+
 	# Customize focus and unfocused states
 	fe.focusStyle.scale = <number>
 	fe.focusStyle.shadowX = <number>
@@ -17,16 +17,19 @@
 	fe.unfocusStyle.shadowColor = <string> (hex or rgba)
 	fe.unfocusStyle.shadowBlur = <number>
 	fe.unfocusStyle.shadowSpread = <number>
-	
+
+	# Customize state switch duration
+	fe.time = <number>
+
 	# Collect layers which will participate into an array
 	myFocusableLayers = [layerA, layerB, layerC]
-	
+
 	# Initialize the engine with your array
 	fe.initialize(myFocusableLayers)
-	
+
 	# Add a layer created post-initialization
 	fe.addLayer(layerA)
-	
+
 	# Optionally attach changeFocus() to keyboard events
 	document.addEventListener "keydown", (event) ->
 		keyCode = event.which
@@ -37,18 +40,18 @@
 			when 39 then fe.changeFocus("right")
 			when 40 then fe.changeFocus("down")
 			else null
-	
+
 	# Place initial focus
 	fe.placeFocus(layerA)
-	
+
 	# focusPrevious() is available to use in conjunction with FlowComponent's showPrevious()
 	fe.focusPrevious()
-	
+
 	# Layers can trigger behavior upon receiving or losing focus, or being selected
 	layerA.on "focus", ->
 	layerA.on "unfocus", ->
 	layerA.on "selected", ->
-	
+
 	# Integration with RemoteLayer (https://github.com/bpxl-labs/RemoteLayer)
 	RemoteLayer = require "RemoteLayer"
 	myRemote = new RemoteLayer
@@ -57,7 +60,7 @@
 		swipeDownAction: -> fe.changeFocus("down")
 		swipeLeftAction: -> fe.changeFocus("left")
 		swipeRightAction: -> fe.changeFocus("right")
-		
+
 	# Enable debug mode to log focus changes
 	fe.debug = true
 ###
@@ -69,6 +72,7 @@ exports.focus = null
 exports.initialFocus = null
 exports.previousFocus = null
 exports.focusable = []
+exports.time = 0.25
 
 # focus style
 exports.focusStyle =
@@ -89,9 +93,9 @@ exports.unfocusStyle =
 # prep focus states
 exports.initialize = (focusableArray) ->
 	exports.focusable = focusableArray
-	for layer in exports.focusable 
+	for layer in exports.focusable
 		styleLayer(layer)
-		
+
 
 # layer visibility
 checkVisible = (layer) ->
@@ -106,7 +110,7 @@ checkVisible = (layer) ->
 		else
 			isVisible = true
 	return isVisible
-	
+
 # focus change
 exports.placeFocus = (layer = null) ->
 	if layer == null
@@ -123,17 +127,17 @@ exports.placeFocus = (layer = null) ->
 		layer.emit "focus"
 		if layer != null and layer in exports.focusable
 			layer?.animate("focus")
-	
+
 unfocusAll = () ->
 	for layer in exports.focusable
 		layer.emit "unfocus"
 		if layer.states.current.name == "focus"
 			layer.animate("unfocus")
-		
+
 exports.focusPrevious = () ->
 	if exports.previousFocus != null
 		exports.placeFocus(exports.previousFocus)
-		
+
 exports.addLayer = (layer) ->
 	exports.focusable.push(layer)
 	styleLayer(layer)
@@ -146,6 +150,7 @@ styleLayer = (layer) ->
 		shadowColor: exports.focusStyle.shadowColor
 		shadowX: exports.focusStyle.shadowX
 		shadowY: exports.focusStyle.shadowY
+		animationOptions: time: exports.time
 	layer.states.unfocus =
 		scale: layer.scale
 		shadowBlur: exports.unfocusStyle.shadowBlur
@@ -153,13 +158,14 @@ styleLayer = (layer) ->
 		shadowColor: exports.unfocusStyle.shadowColor
 		shadowX: exports.unfocusStyle.shadowX
 		shadowY: exports.unfocusStyle.shadowY
+		animationOptions: time: exports.time
 	layer.animate("unfocus", instant: true)
 
 exports.changeFocus = Utils.throttle 0.1, (direction) ->
 	if exports.debug == true
 		print "current: " + exports.focus?.name + "; direction: " + direction
 	tempArray = []
-	# if we've lost all focus, reset 
+	# if we've lost all focus, reset
 	if exports.focus == null or exports.focus == undefined
 		exports.placeFocus(exports.initialFocus)
 	focusMidX = exports.focus.screenFrame.x + exports.focus.screenFrame.width/2
@@ -198,28 +204,28 @@ exports.changeFocus = Utils.throttle 0.1, (direction) ->
 	exports.placeFocus(targetLayer)
 
 measureDistance = (target, direction) ->
-	focusTopCenter = 
+	focusTopCenter =
 		x: exports.focus.screenFrame.x + exports.focus.screenFrame.width/2
 		y: exports.focus.screenFrame.y
-	focusBottomCenter = 
+	focusBottomCenter =
 		x: exports.focus.screenFrame.x + exports.focus.screenFrame.width/2
 		y: exports.focus.screenFrame.y + exports.focus.screenFrame.height
-	focusLeftCenter = 
+	focusLeftCenter =
 		x: exports.focus.screenFrame.x
 		y: exports.focus.screenFrame.y + exports.focus.screenFrame.height/2
-	focusRightCenter = 
+	focusRightCenter =
 		x: exports.focus.screenFrame.x + exports.focus.screenFrame.width
 		y: exports.focus.screenFrame.y + exports.focus.screenFrame.height/2
-	targetTopCenter = 
+	targetTopCenter =
 		x: target.screenFrame.x + target.screenFrame.width/2
 		y: target.screenFrame.y
-	targetBottomCenter = 
+	targetBottomCenter =
 		x: target.screenFrame.x + target.screenFrame.width/2
 		y: target.screenFrame.y + target.screenFrame.height
-	targetLeftCenter = 
+	targetLeftCenter =
 		x: target.screenFrame.x
 		y: target.screenFrame.y + target.screenFrame.height/2
-	targetRightCenter = 
+	targetRightCenter =
 		x: target.screenFrame.x + target.screenFrame.width
 		y: target.screenFrame.y + target.screenFrame.height/2
 	switch direction
@@ -238,4 +244,3 @@ measureDistance = (target, direction) ->
 	# Pythagorean theorem to measure the hypoteneuse
 	absoluteDistance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
 	return absoluteDistance
-	
