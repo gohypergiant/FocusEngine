@@ -51,6 +51,12 @@ fe.unfocusStyle.shadowSpread = <number>
 
 (Unfocused scale is always assumed to be the layer’s original scale. This need not be 1. You may get better visual results by drawing your layer slightly larger than needed and setting its initial scale to something less than 1.)
 
+#### Customize state switch duration
+
+```coffeescript
+fe.time = <number>
+```
+
 #### Collect layers that will participate into an array
 	
 ```coffeescript
