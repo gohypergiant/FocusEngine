@@ -112,7 +112,7 @@ checkVisible = (layer) ->
 	return isVisible
 
 # focus change
-exports.placeFocus = (layer = null) ->
+exports.placeFocus = Utils.throttle 0.1, (layer = null) ->
 	if layer == null
 		return
 	# store initial focus on first run
