@@ -130,8 +130,8 @@ exports.placeFocus = (layer = null) ->
 
 unfocusAll = () ->
 	for layer in exports.focusable
-		layer.emit "unfocus"
 		if layer.states.current.name == "focus"
+			layer.emit "unfocus"
 			layer.animate("unfocus")
 
 exports.focusPrevious = () ->
