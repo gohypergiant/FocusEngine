@@ -121,6 +121,16 @@ myRemote = new RemoteLayer
 fe.debug = true
 ```
 
+#### Check the currently focused layer
+```coffeescript
+print fe.focus
+```
+
+#### Check whether a layer has focus
+```coffeescript
+print layerA.focus
+```
+
 #### Known issues
 
 Attempting to perform a `placeFocus()` call as FocusEngine is changing its own focus will fail. (The call is discarded.) If you need to override FocusEngine's logic, Use a slight delay to ensure the call is respected.

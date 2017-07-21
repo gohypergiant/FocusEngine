@@ -52,6 +52,12 @@
 	layerA.on "unfocus", ->
 	layerA.on "selected", ->
 
+	# Check the currently focused layer
+	print fe.focus
+
+	# Check whether a layer has focus
+	print layerA.focus
+
 	# Integration with RemoteLayer (https://github.com/bpxl-labs/RemoteLayer)
 	RemoteLayer = require "RemoteLayer"
 	myRemote = new RemoteLayer
@@ -94,8 +100,8 @@ exports.unfocusStyle =
 exports.initialize = (focusableArray) ->
 	exports.focusable = focusableArray
 	for layer in exports.focusable
+		layer.focus = false
 		styleLayer(layer)
-
 
 # layer visibility
 checkVisible = (layer) ->
@@ -125,13 +131,15 @@ exports.placeFocus = Utils.throttle 0.1, (layer = null) ->
 		exports.focus = layer
 		unfocusAll()
 		layer.emit "focus"
+		layer.focus = true
 		if layer != null and layer in exports.focusable
 			layer?.animate("focus")
 
 unfocusAll = () ->
 	for layer in exports.focusable
-		if layer.states.current.name == "focus"
+		if layer.focus == true
 			layer.emit "unfocus"
+			layer.focus = false
 			layer.animate("unfocus")
 
 exports.focusPrevious = () ->
@@ -140,6 +148,7 @@ exports.focusPrevious = () ->
 
 exports.addLayer = (layer) ->
 	exports.focusable.push(layer)
+	layer.focus = false
 	styleLayer(layer)
 
 styleLayer = (layer) ->
@@ -162,8 +171,12 @@ styleLayer = (layer) ->
 	layer.animate("unfocus", instant: true)
 
 exports.changeFocus = Utils.throttle 0.1, (direction) ->
+	# if focus was never placed, give up
+	if exports.focus == null and exports.initialFocus == null
+		print "No initial focus set. Use placeFocus(layer) to set."
+		return
 	if exports.debug == true
-		print "current: " + exports.focus?.name + "; direction: " + direction
+		print "focus was: " + (exports.focus?.name or exports.focus?.__framerInstanceInfo?.name or "unnamed layer") + "; direction: " + direction
 	tempArray = []
 	# if we've lost all focus, reset
 	if exports.focus == null or exports.focus == undefined
