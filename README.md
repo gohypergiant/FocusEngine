@@ -138,7 +138,7 @@ layerA.overrides =
 	right: <layer>
 ```
 
-It is not necessary to set all four; but only those directions which require custom behavior. Now `layerA` will always shift up, down, left or right to the layer specified -- no matter what FocusEngine thinks should happen.
+It is not necessary to set all four overrides; but only for those directions which require custom behavior. Now, shifting focus from `layerA`  will always land on the direction-specified target -- no matter what FocusEngine thinks should happen.
 
 > Obviously, you can create very unexpected behaviors this way. Use with care! 
 
