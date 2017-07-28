@@ -156,7 +156,7 @@ fe.debug = true
 
 #### Known issues
 
-Attempting to perform a `placeFocus()` call as FocusEngine is changing its own focus will fail. (The call is discarded.) If you need to override FocusEngine's logic, Use a slight delay to ensure the call is respected.
+Attempting to perform a `placeFocus()` call as FocusEngine is changing its own focus will fail. (The call is discarded.) If you need to override FocusEngine's logic, use the `overrides` feature or add a slight delay to ensure the call is respected.
 
 ```coffeescript
 layerA.on "unfocus", ->
