@@ -71,14 +71,8 @@
 	fe.debug = true
 ###
 
-overrides =
-	up: null
-	down: null
-	left: null
-	right: null
-
-# all layers receive default empty overrides
-Layer::overrides = overrides
+Layer::setOverrides = (options = {}) ->
+	@.overrides = options
 
 exports.debug = false
 
@@ -98,7 +92,6 @@ exports.focusStyle =
 	shadowY: 0
 	shadowSpread: 0
 
-# unfocus style
 exports.unfocusStyle =
 	shadowBlur: 20
 	shadowColor: "rgba(0,0,0,0)"
@@ -110,6 +103,12 @@ exports.unfocusStyle =
 exports.initialize = (focusableArray) ->
 	exports.focusable = focusableArray
 	for layer in exports.focusable
+		if layer.overrides == undefined
+			layer.overrides =
+				up: null
+				down: null
+				left: null
+				right: null
 		layer.focus = false
 		styleLayer(layer)
 
