@@ -116,11 +116,6 @@ myRemote = new RemoteLayer
 	swipeRightAction: -> fe.changeFocus("right")
 ```
 
-#### Enable debug mode to log focus changes
-```coffeescript
-fe.debug = true
-```
-
 #### Check the currently focused layer
 ```coffeescript
 print fe.focus
@@ -129,6 +124,34 @@ print fe.focus
 #### Check whether a layer has focus
 ```coffeescript
 print layerA.focus
+```
+
+#### Overriding focus logic
+Sometimes you will want to change focus in a way that doesn't make exact geometric sense. For example, when switching from a large header row to a smaller secondary row, you may prefer the first cell in the secondary row receive focus. Or, you may want to provide a way for focus to "loop around" at a row's end. These kinds of functions are possible through _overrides._
+
+Set a layer's overrides using the `overrides` object:
+```coffeescript
+layerA.overrides =
+	up: <layer>
+	down: <layer>
+	left: <layer>
+	right: <layer>
+```
+
+It is not necessary to set all four; but only those directions which require custom behavior. Now `layerA` will always shift up, down, left or right to the layer specified -- no matter what FocusEngine thinks should happen.
+
+> Obviously, you can create very unexpected behaviors this way. Use with care! 
+
+If a layer has custom overrides, or has been initialized with FocusEngine, you may check any of its current overrides:
+```coffeescript
+print layerA.overrides?.up
+```
+
+The `?` permits the check to fail gracefully on layers which have no overrides.
+
+#### Enable debug mode to log focus changes
+```coffeescript
+fe.debug = true
 ```
 
 #### Known issues
