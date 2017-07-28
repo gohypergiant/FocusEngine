@@ -71,7 +71,7 @@
 	fe.debug = true
 ###
 
-Layer::setOverrides = (options = {}) ->
+Layer::setOverrides = (options = {up: null, down: null, left: null, right: null}) ->
 	@.overrides = options
 
 exports.debug = false
