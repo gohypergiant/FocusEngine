@@ -100,6 +100,12 @@ exports.unfocusStyle =
 exports.initialize = (focusableArray) ->
 	exports.focusable = focusableArray
 	for layer in exports.focusable
+		if layer.overrides == undefined
+			layer.overrides =
+				up: null
+				down: null
+				left: null
+				right: null
 		layer.focus = false
 		styleLayer(layer)
 
@@ -181,40 +187,43 @@ exports.changeFocus = Utils.throttle 0.1, (direction) ->
 	# if we've lost all focus, reset
 	if exports.focus == null or exports.focus == undefined
 		exports.placeFocus(exports.initialFocus)
-	focusMidX = exports.focus.screenFrame.x + exports.focus.screenFrame.width/2
-	focusMidY = exports.focus.screenFrame.y + exports.focus.screenFrame.height/2
-	if direction == "up"
-		for layer in exports.focusable
-			layerMidY = layer.screenFrame.y + layer.screenFrame.height/2
-			if layerMidY < focusMidY and checkVisible(layer) == true
-				tempArray.push(layer)
-	else if direction == "down"
-		for layer in exports.focusable
-			layerMidY = layer.screenFrame.y + layer.screenFrame.height/2
-			if layerMidY > focusMidY and checkVisible(layer) == true
-				tempArray.push(layer)
-	else if direction == "left"
-		for layer in exports.focusable
-			layerMidX = layer.screenFrame.x + layer.screenFrame.width/2
-			if layerMidX < focusMidX and checkVisible(layer) == true
-				tempArray.push(layer)
-	else if direction == "right"
-		for layer in exports.focusable
-			layerMidX = layer.screenFrame.x + layer.screenFrame.width/2
-			if layerMidX > focusMidX and checkVisible(layer) == true
-				tempArray.push(layer)
-	else if direction == "select"
-		exports.focus.emit "selected"
-	if tempArray.length == 0
-		return
-	targetLayer = tempArray[0]
-	shortestDistance = measureDistance(targetLayer, direction)
-	for layer in tempArray
-		distance = measureDistance(layer, direction)
-		if distance < shortestDistance
-			targetLayer = layer
-			shortestDistance = distance
-	exports.placeFocus(targetLayer)
+	if exports.focus.overrides?[direction] != undefined and exports.focus.overrides?[direction] != null # override
+		exports.placeFocus(exports.focus.overrides[direction])
+	else
+		focusMidX = exports.focus.screenFrame.x + exports.focus.screenFrame.width/2
+		focusMidY = exports.focus.screenFrame.y + exports.focus.screenFrame.height/2
+		if direction == "up"
+			for layer in exports.focusable
+				layerMidY = layer.screenFrame.y + layer.screenFrame.height/2
+				if layerMidY < focusMidY and checkVisible(layer) == true
+					tempArray.push(layer)
+		else if direction == "down"
+			for layer in exports.focusable
+				layerMidY = layer.screenFrame.y + layer.screenFrame.height/2
+				if layerMidY > focusMidY and checkVisible(layer) == true
+					tempArray.push(layer)
+		else if direction == "left"
+			for layer in exports.focusable
+				layerMidX = layer.screenFrame.x + layer.screenFrame.width/2
+				if layerMidX < focusMidX and checkVisible(layer) == true
+					tempArray.push(layer)
+		else if direction == "right"
+			for layer in exports.focusable
+				layerMidX = layer.screenFrame.x + layer.screenFrame.width/2
+				if layerMidX > focusMidX and checkVisible(layer) == true
+					tempArray.push(layer)
+		else if direction == "select"
+			exports.focus.emit "selected"
+		if tempArray.length == 0
+			return
+		targetLayer = tempArray[0]
+		shortestDistance = measureDistance(targetLayer, direction)
+		for layer in tempArray
+			distance = measureDistance(layer, direction)
+			if distance < shortestDistance
+				targetLayer = layer
+				shortestDistance = distance
+		exports.placeFocus(targetLayer)
 
 measureDistance = (target, direction) ->
 	focusTopCenter =
