@@ -140,7 +140,9 @@ layerA.overrides =
 
 It is not necessary to set all four overrides; but only for those directions which require custom behavior. Now, shifting focus from `layerA`  will always land on the direction-specified target -- no matter what FocusEngine thinks should happen.
 
-> Obviously, you can create very unexpected behaviors this way. Use with care! 
+<img src="https://user-images.githubusercontent.com/935/28783390-d7b1c37e-75d5-11e7-86f3-6a3712430489.png" width="400" style="display: block; margin: auto" alt="Override illustration" />
+
+> Obviously, you can create very counterintuitive behaviors this way. Use with care! 
 
 If a layer has custom overrides, or has been initialized with FocusEngine, you may check any of its current overrides:
 ```coffeescript
