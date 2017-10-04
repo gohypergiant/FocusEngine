@@ -182,7 +182,7 @@ exports.changeFocus = Utils.throttle 0.1, (direction) ->
 		print "No initial focus set. Use placeFocus(layer) to set."
 		return
 	if exports.debug == true
-		print "focus was: " + (exports.focus?.name or exports.focus?.__framerInstanceInfo?.name or "unnamed layer") + "; direction: " + direction
+		print "focus was: " + (exports.focus?.name or exports.focus?.__framerInstanceInfo?.targetName or "unnamed layer") + "; direction: " + direction
 	tempArray = []
 	# if we've lost all focus, reset
 	if exports.focus == null or exports.focus == undefined
