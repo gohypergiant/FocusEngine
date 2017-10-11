@@ -1,0 +1,11 @@
+{
+    "name": "FocusEngine",
+    "description": "Generates a developer panel to expose advanced features of your prototype.",
+    "author": "John Marstall",
+
+    "require": "fe = require 'FocusEngine'",
+    "install": "FocusEngine.coffee",
+    "example": "example.coffee",
+
+    "thumb": "thumb.png"
+}
