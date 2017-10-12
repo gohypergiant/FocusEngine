@@ -1,0 +1,14 @@
+{
+    "name": "FocusEngine",
+    "description": "Simulates the grid focus behavior found on TV set-top box interfaces.",
+    "author": "John Marstall",
+
+    "require": "fe = require 'FocusEngine'",
+		"install": [
+			"FocusEngine.coffee",
+			"README.md"
+		],
+    "example": "example.coffee",
+
+    "thumb": "thumb.png"
+}
