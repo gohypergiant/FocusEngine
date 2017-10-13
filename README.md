@@ -4,6 +4,8 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](.github/CONTRIBUTING.md)
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()
 
+<a href="https://open.framermodules.com/mapboxlayer"><img alt="Install with Framer Modules" src="https://www.framermodules.com/assets/badge@2x.png" width='160' height='40' /></a>
+
 The FocusEngine module allows you to simulate the grid focus behavior seen on streaming media players like Apple TV and Roku. Use the keyboard, [RemoteLayer](https://github.com/bpxl-labs/RemoteLayer), or another mechanism to direct focus around your prototype’s canvas.
 
 Once initialized, any _visible_ layer can be brought into focus, even if it’s off screen. This permits the activation of off-screen menus. Visual appearance of focused elements can be customized.
