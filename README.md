@@ -29,9 +29,13 @@ Copy or save the `FocusEngine.coffee` file into your project's `modules` folder.
 
 In your Framer project add the following:
 
-```javascript
+```coffeescript
+# If you manually installed
 fe = require "FocusEngine"
+# else
+fe = require "@blackpixel/framer-focusengine"
 ```
+
 
 ### API
 
