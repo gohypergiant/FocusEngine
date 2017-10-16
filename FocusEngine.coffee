@@ -266,3 +266,10 @@ measureDistance = (target, direction) ->
 	# Pythagorean theorem to measure the hypoteneuse
 	absoluteDistance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
 	return absoluteDistance
+
+Events.Focus = "focus"
+Layer::onFocus = (cb) -> @on(Events.Focus, cb)
+Events.Unfocus = "unfocus"
+Layer::onUnfocus = (cb) -> @on(Events.Unfocus, cb)
+Events.Selected = "selected"
+Layer::onSelected = (cb) -> @on(Events.Selected, cb)
