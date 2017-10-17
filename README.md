@@ -171,7 +171,7 @@ fe.debug = true
 ```
 
 #### Example project
-[Download](https://github.com/bpxl-labs/FocusEngine/tree/master/example.framer) the example to try it for yourself.
+[Download](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/bpxl-labs/FocusEngine/tree/master/example.framer) the example to try it for yourself.
 
 #### Known issues
 
