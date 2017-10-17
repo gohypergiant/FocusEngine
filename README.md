@@ -170,6 +170,9 @@ The `?` permits the check to fail gracefully on layers which have no overrides.
 fe.debug = true
 ```
 
+#### Example project
+[Download](https://github.com/bpxl-labs/FocusEngine/tree/master/example.framer) the example to try it for yourself.
+
 #### Known issues
 
 Attempting to perform a `placeFocus()` call as FocusEngine is changing its own focus will fail. (The call is discarded.) If you need to override FocusEngine's logic, use the `overrides` feature or add a slight delay to ensure the call is respected.
