@@ -111,6 +111,14 @@ layerA.on "unfocus", ->
 layerA.on "selected", ->
 ```
 
+Shortcuts are also available:
+
+```coffeescript
+layerA.onFocus ->
+layerA.onUnfocus ->
+layerA.onSelected ->
+```
+
 #### Integration with [RemoteLayer](https://github.com/bpxl-labs/RemoteLayer)
 ```coffeescript
 RemoteLayer = require "RemoteLayer"
