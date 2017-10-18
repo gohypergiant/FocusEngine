@@ -170,7 +170,7 @@ The `?` permits the check to fail gracefully on layers which have no overrides.
 fe.debug = true
 ```
 
-#### Example project
+### Example project
 [Download](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/bpxl-labs/FocusEngine/tree/master/example.framer) the example to try it for yourself.
 
 #### Known issues
